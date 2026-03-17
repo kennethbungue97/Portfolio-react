@@ -20,7 +20,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+393291612852",
+    value: "+39 329 1612852",
     href: "tel:+393291612852",
   },
   {
@@ -31,6 +31,10 @@ const contactInfo = [
     href: "https://share.google/OWQIWbfbWBHcm3p4m",
   },
 ];
+
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  };
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -46,6 +50,14 @@ export const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isValidEmail(formData.email)) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please enter a valid email address.",
+      });
+      return;
+    }
 
     setIsLoading(true);
     setSubmitStatus({ type: null, message: "" });
@@ -151,7 +163,13 @@ export const Contact = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                />
+                  />
+
+                  {formData.email && !isValidEmail(formData.email) && (
+                    <p className="text-red-400 text-sm mt-1">
+                      Please enter a valid email address (e.g. name@domain.com)
+                    </p>
+                  )}
               </div>
 
               <div>
@@ -220,6 +238,7 @@ export const Contact = () => {
                   <a
                     key={i}
                     href={item.href}
+                    target={item.target}
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
