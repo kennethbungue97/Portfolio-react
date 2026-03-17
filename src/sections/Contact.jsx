@@ -20,14 +20,15 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+39 (329) 161-2852",
+    value: "+393291612852",
     href: "tel:+393291612852",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Via Modena, 2, 20099 MI",
-    href: "#",
+    target: "_blank",
+    href: "https://share.google/OWQIWbfbWBHcm3p4m",
   },
 ];
 
@@ -143,6 +144,7 @@ export const Contact = () => {
                 </label>
                 <input
                   required
+                  type="email"
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) =>
