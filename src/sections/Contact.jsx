@@ -33,7 +33,7 @@ const contactInfo = [
 ];
 
   const isValidEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   };
 
 export const Contact = () => {
